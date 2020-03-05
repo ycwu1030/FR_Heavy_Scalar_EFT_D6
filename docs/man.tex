@@ -1,0 +1,132 @@
+%% ****** Start of file template.aps ****** %
+%%
+%%
+%%   This file is part of the APS files in the REVTeX 4 distribution.
+%%   Version 4.0 of REVTeX, August 2001
+%%
+%%
+%%   Copyright (c) 2001 The American Physical Society.
+%%
+%%   See the REVTeX 4 README file for restrictions and more information.
+%%
+%
+% This is a template for producing manuscripts for use with REVTEX 4.0
+% Copy this file to another name and then work on that file.
+% That way, you always have this original template file to use.
+%
+% Group addresses by affiliation; use superscriptaddress for long
+% author lists, or if there are many overlapping affiliations.
+% For Phys. Rev. appearance, change preprint to twocolumn.
+% Choose pra, prb, prc, prd, pre, prl, prstab, or rmp for journal
+%  Add 'draft' option to mark overfull boxes with black boxes
+%  Add 'showpacs' option to make PACS codes appear
+\documentclass[aps,preprint,superscriptaddress,groupedaddress]{revtex4}  % for review and submission
+%\documentclass[aps,preprint,showpacs,superscriptaddress,groupedaddress]{revtex4}  % for double-spaced preprint
+\usepackage{graphicx}  % needed for figures
+\usepackage{dcolumn}   % needed for some tables
+\usepackage{bm}        % for math
+\usepackage{amssymb}   % for math
+\usepackage{subfigure}
+\usepackage{epstopdf}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\allowdisplaybreaks[4]
+\usepackage{accents}
+\newlength{\dhatheight}
+\newcommand{\doublehat}[1]{%
+    \settoheight{\dhatheight}{\ensuremath{\hat{#1}}}%
+    \addtolength{\dhatheight}{-0.35ex}%
+    \hat{\vphantom{\rule{1pt}{\dhatheight}}%
+    \smash{\hat{#1}}}}
+\newcommand{\ycwu}[1]{{\bf \color{red} YW: #1}}
+\usepackage{hyperref}
+
+\begin{document}
+
+% The following information is for internal review, please remove them for submission
+%\widetext
+%\leftline{Version xx as of \today}
+%\leftline{Primary authors: Joe E. Physics}
+%\leftline{To be submitted to (PRL, PRD-RC, PRD, PLB; choose one.)}
+%\leftline{Comment to {\tt d0-run2eb-nnn@fnal.gov} by xxx, yyy}
+%\centerline{\em D\O\ INTERNAL DOCUMENT -- NOT FOR PUBLIC DISTRIBUTION}
+
+% the following line is for submission, including submission to the arXiv!!
+%\hspace{5.2in} \mbox{Fermilab-Pub-04/xxx-E}
+
+\title{The Lagrangian used in `Heavy\_Scalar\_EFT' Model File}
+%\input author_list.tex       % D0 authors (remove the first 3 lines
+                             % of this file prior to submission, they
+                             % contain a time stamp for the authorlist)
+                             % (includes institutions and visitors)
+\author{Yongcheng Wu}\affiliation{Ottawa-Carleton Institute for Physics, Carleton University, \\
+1125 Colonel By Drive, Ottawa, Ontario K1S 5B6, Canada}
+\author{Yue Xu}\affiliation{Department of Physics, Tsinghua University, Beijing 100084, China}
+\author{Xin Chen}\affiliation{Department of Physics, Tsinghua University, Beijing 100084, China}\affiliation{Collaborative Innovation Center of Quantum Matter, Beijing 100084, China}\affiliation{Center for High Energy Physics, Peking University, Beijing 100084, China}
+
+%\date{\today}
+
+\begin{abstract}
+Here we list the Lagrangian we used in constructing the model files.
+\end{abstract}
+
+
+\maketitle
+
+%\section{\label{sec:level1}First-level heading}
+% sections are not used for PRL papers
+\section{Two Extra Dimension 6 Operator for SM Higgs}
+\label{sec:D6_SMHiggs}
+
+We add two extra EFT vertex for SM Higgs:
+\begin{align}
+    \mathcal{L} = g_h^{\gamma\gamma} h F_{\mu\nu} F^{\mu\nu} + g_h^{Z\gamma} h Z_{\mu\nu}F^{\mu\nu}
+\end{align}
+where
+\begin{align}
+    g_h^{\gamma\gamma} &= -\frac{\alpha_{\rm EW}}{8\pi v} \mathcal{A}_{\gamma\gamma} \\
+    g_h^{Z\gamma} &= -\frac{\alpha_{\rm EW}}{4\pi v} \mathcal{A}_{Z\gamma}
+\end{align}
+
+\section{Two Dimension 4 Operator for the Heavy Scalar}
+
+At dimension-4, we add two operator for the heavy scalar
+\begin{align}
+    \mathcal{L} = g_{4,H}^{WW}g^{\mu\nu} H W^+_\mu W^-_\nu + g_{4,H}^{ZZ}g^{\mu\nu} H Z_\mu Z_\nu
+\end{align}
+where we choose the coupling as
+\begin{align}
+    g_{4,H}^{WW} &= g m_W \rho_H \\
+    g_{4,H}^{ZZ} &= \frac{g}{2c_W^2} m_W \rho_H
+\end{align}
+with $g$ the weak coupling, $c_W$ the cosine of the Weinberg angle. $\rho_H$ is a factor characterizing the contribution of $H$ to the EWSB (or to $m_W/m_Z$).
+
+\section{Dimension 6 Operator for the Heavy Scalar}
+
+At dimension-6, we have several simplified EFT operators for the heavy scalar
+\begin{align}
+    \mathcal{L} =& g_{6,H}^{WW} (\partial_\nu H)W^{\dagger}_{\mu} W^{\mu\nu} + h.c. + g_{6,H}^{\prime WW} H W^{\mu\nu}W^\dagger_{\mu\nu} \nonumber \\
+    & + g_{6,H}^{ZZ} (\partial_\nu H) Z_\mu Z^{\mu\nu} + h.c. + g_{6,H}^{\prime ZZ} H Z^{\mu\nu}Z_{\mu\nu} +\nonumber \\
+    & + g_{6,H}^{Z\gamma} (\partial_\nu H) Z_\mu F^{\mu\nu} + g_{6,H}^{\prime Z\gamma} F^{\mu\nu}Z_{\mu\nu} \nonumber \\
+    & + g_{6,H}^{\gamma\gamma} H F^{\mu\nu}F_{\mu\nu}
+\end{align}
+where
+\begin{align}
+    g_{6,H}^{WW} &= \frac{g m_W \rho_H f_W}{2\Lambda^2}\\
+    g_{6,H}^{\prime WW} &= -\frac{g m_W \rho_H f_{WW}}{\Lambda^2} \\
+    g_{6,H}^{ZZ} &=  \frac{g m_W \rho_H (c_W^2 f_W + s_W^2 f_B)}{2 c_W^2 \Lambda^2} \\
+    g_{6,H}^{\prime ZZ} &= -\frac{g m_W \rho_H (s_W^4 f_{BB} + c_W^4 f_{WW})}{2 c_W^2 \Lambda^2} \\
+    g_{6,H}^{Z\gamma} &= \frac{g m_W \rho_H s_W(f_W - f_B)}{2c_W\Lambda^2} \\
+    g_{6,H}^{\prime Z\gamma} &= \frac{g m_W \rho_H s_W(s_W^2f_{BB}-c_W^2f_{WW})}{c_W \Lambda^2}\\
+    g_{6,H}^{\gamma\gamma} &= -\frac{g m_W \rho_H s_W^2(f_{BB} + f_{WW})}{2\Lambda^2}
+\end{align}
+
+\ycwu{Add references for above Lagrangians.}
+%\input acknowledgement.tex   % input acknowledgement
+
+% \bibliography{references}
+
+\end{document}
+%
+% ****** End of file template.aps ******

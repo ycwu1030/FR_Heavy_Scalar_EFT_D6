@@ -1,0 +1,272 @@
+(***************************************************************************************************************)
+(******                       This is the FeynRules mod-file for the Heavy Scalar SEFT                    ******)
+(******                                                                                                   ******)
+(******     Authors: Yongcheng Wu                                                                         ******)
+(******                                                                                                   ******)
+(****** Choose whether Feynman gauge is desired.                                                          ******)
+(****** If set to False, unitary gauge is assumed.                                                          ****)
+(****** Feynman gauge is especially useful for CalcHEP/CompHEP where the calculation is 10-100 times faster. ***)
+(****** Feynman gauge is not supported in MadGraph and Sherpa.                                              ****)
+(***************************************************************************************************************)
+
+(* ************************** *)
+(* *****  Information   ***** *)
+(* ************************** *)
+(* This is an add-on of SM model file, use it together with SM.fr *)
+(* The Lagrangian here is quite simplified *)
+M$ModelName = "HeavyScalar_SEFT";
+
+M$Information = {
+  Authors      -> {"Yongcheng Wu"}, 
+  Version      -> "0.1",
+  Date         -> "05. 03. 2020",
+  Institutions -> {"Carleton University"},
+  Emails       -> {"yc_wu1030@126.com"},
+  URLs         -> "http://feynrules.phys.ucl.ac.be/view/to_be_added"
+};
+
+
+
+M$InteractionOrderHierarchy = {
+  {EFF4, 2},
+  {EFF6, 2}
+};
+
+
+(* ************************** *)
+(* **** Particle classes **** *)
+(* ************************** *)
+M$ClassesDescription = {
+
+(* Only one extra partilce: the Heavy Scalar *)
+  S[4] == {
+    ClassName       -> HH,
+    SelfConjugate   -> True,
+    Mass            -> {MHH,500.0},
+    Width           -> {WHH,0.00407},
+    PropagatorLabel -> "HH",
+    PropagatorType  -> D,
+    PropagatorArrow -> None,
+    PDG             -> 254,
+    ParticleName    -> "HH",
+    FullName        -> "HH"
+  }
+};
+
+
+sert[x_] := 1+ 7/30 x + 2/21 x^2 + 26/525 x^3;
+
+serw[xw_, xt_] := 1 + xw * 66/235 +xw^2 * 228/1645 + xw^3 * 696/8225 +
+            xw^4 * 5248/90475 +xw^5 * 1280/29939+ xw^6 * 54528/1646645- 
+            xt * 56/705 - xt^2 * 32/987;
+
+serp[x_] := 1 + x/3 + x^2 * 8/45 + x^3 * 4/35;
+
+(* ************************** *)
+(* *****   Parameters   ***** *)
+(* ************************** *)
+M$Parameters = {
+
+(* External parameters *)
+  rhoH == {
+    ParameterType -> External,
+    BlockName     -> DIM6COEFF,
+    OrderBlock    -> 1,
+    Value         -> 1.0,
+    TeX           -> Subscript[\[Rho],H],
+    Description   -> "ratio in dim-4"
+  },
+  Lambda == {
+    ParameterType -> External,
+    BlockName     -> DIM6COEFF,
+    OrderBlock    -> 2,
+    Value         -> 3000.0,
+    TeX           -> \[Lambda],
+    Description   -> "High Scale"
+  },
+  fW == {
+    ParameterType -> External,
+    BlockName     -> DIM6COEFF,
+    OrderBlock    -> 3,
+    Value         -> 1.3,
+    TeX           -> Subscript[f,W],
+    Description   -> "One of Coefficients of Dim-6 operators "
+  },
+  fWW == {
+    ParameterType -> External,
+    BlockName     -> DIM6COEFF,
+    OrderBlock    -> 4,
+    Value         -> 1.4,
+    TeX           -> Subscript[f,WW],
+    Description   -> "One of Coefficients of Dim-6 operators "
+  },
+  fB == {
+    ParameterType -> External,
+    BlockName     -> DIM6COEFF,
+    OrderBlock    -> 5,
+    Value         -> 1.5,
+    TeX           -> Subscript[f,B],
+    Description   -> "One of Coefficients of Dim-6 operators "
+  },
+  fBB == {
+    ParameterType -> External,
+    BlockName     -> DIM6COEFF,
+    OrderBlock    -> 6,
+    Value         -> 1.6,
+    TeX           -> Subscript[f,BB],
+    Description   -> "One of Coefficients of Dim-6 operators "
+  },
+  Q4 == {
+    ParameterType -> External,
+    BlockName     -> DIM6COEFF,
+    OrderBlock    -> 7,
+    Value         -> 1.0,
+    TeX           -> Subscript[Q,4],
+    Description   -> "Switch in dim-4"
+  },
+  AMPAA == {
+    ParameterType -> External,
+    BlockName     -> DIM6COEFF,
+    OrderBlock    -> 8,
+    Value         -> 6.4886493628463047,
+    TeX           -> Subscript[A,aa],
+    Description   -> "Amplitude of h->aa"
+  },(*6.4886493628463047*)
+  AMPZA == {
+    ParameterType -> External,
+    BlockName     -> DIM6COEFF,
+    OrderBlock    -> 9,
+    Value         -> -11.650973793096698,
+    TeX           -> Subscript[A,Za],
+    Description   -> "Amplitude of h->Za"
+  },(*-11.650973793096698*)
+  (* Internal Parameters *)
+
+  gHZZ == {
+    ParameterType    -> Internal,
+    Value            -> Q4 gw MW rhoH /(2 cw^2),
+    TeX              -> Subscript[f, HZZ],
+    InteractionOrder -> {EFF4,1},
+    Description      -> "Dim 4 coupling"
+  },
+  gHZZ1 == {
+    ParameterType    -> Internal,
+    Value            -> gw MW rhoH (cw^2 fW + sw^2 fB)/(2 cw^2 Lambda^2),
+    TeX              -> Subscript[f, HZZ1],
+    InteractionOrder -> {EFF6,1},
+    Description      -> "Dim 6 coupling"
+  },
+  gHZZ2 == {
+    ParameterType    -> Internal,
+    Value            -> -gw MW rhoH (sw^4 fBB + cw^4 fWW)/(2 cw^2 Lambda^2),
+    TeX              -> Subscript[f, HZZ2],
+    InteractionOrder -> {EFF6,1},
+    Description      -> "Dim 6 coupling"
+  },
+  gHWW == {
+    ParameterType    -> Internal,
+    Value            -> Q4 gw MW rhoH,
+    TeX              -> Subscript[f, HWW],
+    InteractionOrder -> {EFF4,1},
+    Description      -> "Dim 4 coupling"
+  },
+  gHWW1 == {
+    ParameterType    -> Internal,
+    Value            -> gw MW rhoH fW/(2 Lambda^2),
+    TeX              -> Subscript[f, HWW1],
+    InteractionOrder -> {EFF6,1},
+    Description      -> "Dim 6 coupling"
+  },
+  gHWW2 == {
+    ParameterType    -> Internal,
+    Value            -> -gw MW rhoH fWW/(Lambda^2),
+    TeX              -> Subscript[f, HWW2],
+    InteractionOrder -> {EFF6,1},
+    Description      -> "Dim 6 coupling"
+  },
+  gHZA1 == {
+    ParameterType    -> Internal,
+    Value            -> gw MW rhoH sw*(fW-fB)/(2*cw*Lambda^2),
+    TeX              -> Subscript[f, HZA1],
+    InteractionOrder -> {EFF6,1},
+    Description      -> "Dim 6 coupling"
+  },
+  gHZA2 == {
+    ParameterType    -> Internal,
+    Value            -> gw MW rhoH sw*(sw2*fBB-cw2*fWW)/(cw*Lambda^2),
+    TeX              -> Subscript[f, HZA2],
+    InteractionOrder -> {EFF6,1},
+    Description      -> "Dim 6 coupling"
+  },
+  gHAA == {
+    ParameterType    -> Internal,
+    Value            -> -gw MW rhoH sw2*(fBB + fWW)/(2*Lambda^2),
+    TeX              -> Subscript[f, HAA],
+    InteractionOrder -> {EFF6,1},
+    Description      -> "Dim 6 coupling"
+  },
+  gHLAA == {
+    ParameterType    -> Internal,
+    Value            -> -aEW/(8*Pi*vev)*(AMPAA),(*6.4886493628463047*)
+    TeX              -> Subscript[f, HLAA],
+    InteractionOrder -> {EFF6,1},
+    Description      -> "Dim 6 coupling"
+  },
+  gHLZA == {
+    ParameterType    -> Internal,
+    Value            -> -aEW/(4*Pi*vev)*(AMPZA),(*-11.650973793096698*)
+    TeX              -> Subscript[f, HLZA],
+    InteractionOrder -> {EFF6,1},
+    Description      -> "Dim 6 coupling"
+  }
+
+};
+
+(* ************************** *)
+(* *****   Lagrangian   ***** *)
+(* ************************** *)
+
+LWD4:=Block[{mu},
+(*gw MW rhoH*)
+gHWW HH W[mu] Wbar[mu]
+];
+
+LZD4:=Block[{mu},
+(*gw MW rhoH/2/cw^2*) 
+gHZZ HH Z[mu] Z[mu]
+];
+
+LWD6:= Block[{mu,nu,rho,sig, LHWW1,LHWW2},
+LHWW1=gHWW1 FS[W,mu,nu] Wbar[mu] del[HH,nu];
+LHWW2=gHWW2 HH FS[W,mu,nu] FS[Wbar,mu,nu];
+LHWW1+LHWW2+HC[LHWW1]
+];
+
+LZD6:= Block[{mu,nu,rho,sig, LHZZ1,LHZZ2},
+LHZZ1=gHZZ1 FS[Z,mu,nu] Z[mu] del[HH,nu];
+LHZZ2=gHZZ2 HH FS[Z,mu,nu] FS[Z,mu,nu];
+LHZZ1+LHZZ2
+];
+
+LAAD6:= Block[{mu,nu,LHAA},
+LHAA=gHAA FS[A,mu,nu]FS[A,mu,nu] HH;
+LHAA
+];
+
+LZAD6:= Block[{mu,nu,LHZA1,LHZA2},
+LHZA1 = gHZA1 FS[A,mu,nu]Z[mu]del[HH,nu];
+LHZA2 = gHZA2 HH FS[A,mu,nu]FS[Z,mu,nu];
+LHZA1 + LHZA2
+];
+
+LHLAA:=Block[{mu,nu,LhAA1},
+LhAA1 = gHLAA H FS[A,mu,nu]FS[A,mu,nu];
+LhAA1
+];
+
+LHLZA:=Block[{mu,nu,LhZA1},
+LhZA1 = gHLZA H FS[Z,mu,nu]FS[A,mu,nu];
+LhZA1
+];
+
+LHHEFT:= LSM + LWD4 + LZD4 + LWD6 + LZD6 + LAAD6 + LZAD6 + LHLAA + LHLZA;
