@@ -1,7 +1,7 @@
 (***************************************************************************************************************)
 (******                       This is the FeynRules mod-file for the Heavy Scalar SEFT                    ******)
 (******                                                                                                   ******)
-(******     Authors: Yongcheng Wu                                                                         ******)
+(******     Authors: Yongcheng Wu, Yue Xu, Xin Chen                                                       ******)
 (******                                                                                                   ******)
 (****** Choose whether Feynman gauge is desired.                                                          ******)
 (****** If set to False, unitary gauge is assumed.                                                          ****)
@@ -17,11 +17,11 @@
 M$ModelName = "HeavyScalar_SEFT";
 
 M$Information = {
-  Authors      -> {"Yongcheng Wu"}, 
-  Version      -> "0.1",
+  Authors      -> {"Yongcheng Wu", "Yue Xu", "Xin Chen"}, 
+  Version      -> "1.0.0",
   Date         -> "05. 03. 2020",
-  Institutions -> {"Carleton University"},
-  Emails       -> {"yc_wu1030@126.com"},
+  Institutions -> {"Carleton University","Tsinghua University", "Tsinghua University"},
+  Emails       -> {"yc_wu1030@126.com","yue.xu@cern.ch","xin.chen@cern.ch"},
   URLs         -> "http://feynrules.phys.ucl.ac.be/view/to_be_added"
 };
 
