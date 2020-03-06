@@ -1,5 +1,5 @@
 (***************************************************************************************************************)
-(******                       This is the FeynRules mod-file for the Heavy Scalar SEFT                    ******)
+(******                       This is the FeynRules mod-file for the Heavy Scalar EFT                     ******)
 (******                                                                                                   ******)
 (******     Authors: Yongcheng Wu, Yue Xu, Xin Chen                                                       ******)
 (******                                                                                                   ******)
@@ -14,7 +14,7 @@
 (* ************************** *)
 (* This is an add-on of SM model file, use it together with SM.fr *)
 (* The Lagrangian here is quite simplified *)
-M$ModelName = "HeavyScalar_SEFT";
+M$ModelName = "HeavyScalar_EFT";
 
 M$Information = {
   Authors      -> {"Yongcheng Wu", "Yue Xu", "Xin Chen"}, 
@@ -133,6 +133,11 @@ M$Parameters = {
   },(*-11.650973793096698*)
   (* Internal Parameters *)
 
+  cw2 == { 
+    ParameterType -> Internal, 
+    Value         -> (MW/MZ)^2, 
+    Description   -> "Squared Cosine of the Weinberg angle"
+  },
   gHZZ == {
     ParameterType    -> Internal,
     Value            -> Q4 gw MW rhoH /(2 cw^2),
