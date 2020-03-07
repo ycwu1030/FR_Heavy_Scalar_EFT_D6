@@ -1,6 +1,6 @@
 # This file was automatically created by FeynRules 2.3.32
 # Mathematica version: 10.4.1 for Mac OS X x86 (64-bit) (April 17, 2016)
-# Date: Fri 6 Mar 2020 11:53:52
+# Date: Sat 7 Mar 2020 10:46:17
 
 
 
@@ -326,7 +326,7 @@ vev = Parameter(name = 'vev',
 gHAA = Parameter(name = 'gHAA',
                  nature = 'internal',
                  type = 'real',
-                 value = '-((fBB + fWW)*gw*MW*rhoH*sw2)/(2.*Lambda**2)',
+                 value = '-((fBB + fWW)*gw*MW*sw2)/(2.*Lambda**2)',
                  texname = 'f_{\\text{HAA}}')
 
 gHLAA = Parameter(name = 'gHLAA',
@@ -350,25 +350,25 @@ gHWW = Parameter(name = 'gHWW',
 gHWW1 = Parameter(name = 'gHWW1',
                   nature = 'internal',
                   type = 'real',
-                  value = '(fW*gw*MW*rhoH)/(2.*Lambda**2)',
+                  value = '(fW*gw*MW)/(2.*Lambda**2)',
                   texname = 'f_{\\text{HWW1}}')
 
 gHWW2 = Parameter(name = 'gHWW2',
                   nature = 'internal',
                   type = 'real',
-                  value = '-((fWW*gw*MW*rhoH)/Lambda**2)',
+                  value = '-((fWW*gw*MW)/Lambda**2)',
                   texname = 'f_{\\text{HWW2}}')
 
 gHZA1 = Parameter(name = 'gHZA1',
                   nature = 'internal',
                   type = 'real',
-                  value = '((-fB + fW)*gw*MW*rhoH*sw)/(2.*cw*Lambda**2)',
+                  value = '((-fB + fW)*gw*MW*sw)/(2.*cw*Lambda**2)',
                   texname = 'f_{\\text{HZA1}}')
 
 gHZA2 = Parameter(name = 'gHZA2',
                   nature = 'internal',
                   type = 'real',
-                  value = '(gw*MW*rhoH*sw*(-(cw2*fWW) + fBB*sw2))/(cw*Lambda**2)',
+                  value = '(gw*MW*sw*(-(cw2*fWW) + fBB*sw2))/(cw*Lambda**2)',
                   texname = 'f_{\\text{HZA2}}')
 
 gHZZ = Parameter(name = 'gHZZ',
@@ -380,13 +380,13 @@ gHZZ = Parameter(name = 'gHZZ',
 gHZZ1 = Parameter(name = 'gHZZ1',
                   nature = 'internal',
                   type = 'real',
-                  value = '(gw*MW*rhoH*(cw**2*fW + fB*sw**2))/(2.*cw**2*Lambda**2)',
+                  value = '(gw*MW*(cw**2*fW + fB*sw**2))/(2.*cw**2*Lambda**2)',
                   texname = 'f_{\\text{HZZ1}}')
 
 gHZZ2 = Parameter(name = 'gHZZ2',
                   nature = 'internal',
                   type = 'real',
-                  value = '-(gw*MW*rhoH*(cw**4*fWW + fBB*sw**4))/(2.*cw**2*Lambda**2)',
+                  value = '-(gw*MW*(cw**4*fWW + fBB*sw**4))/(2.*cw**2*Lambda**2)',
                   texname = 'f_{\\text{HZZ2}}')
 
 lam = Parameter(name = 'lam',

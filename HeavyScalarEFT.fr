@@ -18,13 +18,23 @@ M$ModelName = "HeavyScalar_EFT";
 
 M$Information = {
   Authors      -> {"Yongcheng Wu", "Yue Xu", "Xin Chen"}, 
-  Version      -> "1.0.0",
-  Date         -> "05. 03. 2020",
+  Version      -> "1.1.0",
+  Date         -> "07. 03. 2020",
   Institutions -> {"Carleton University","Tsinghua University", "Tsinghua University"},
   Emails       -> {"yc_wu1030@126.com","yue.xu@cern.ch","xin.chen@cern.ch"},
-  URLs         -> "http://feynrules.phys.ucl.ac.be/view/to_be_added"
+  URLs         -> "https://feynrules.irmp.ucl.ac.be/wiki/HeavyScalarED"
 };
 
+(** References **)
+(** 
+1. Y.-P. Kuang, H.-Y. Ren, L.-H. Xia, [https://doi.org/10.1103/PhysRevD.90.115002 Phys. Rev. D90(2014) 115002] [http://arxiv.org/abs/1404.6367 arXiv:1404.6367]
+2. Y.-P. Kuang, H.-Y. Ren, L.-H. Xia, [https://doi.org/10.1088/1674-1137/40/2/023101 Chin.Phys.C40(2) (2016) 023101] [http://arxiv.org/abs/1506.08007 arXiv:1506.08007]
+3. X. Chen, Y. Xu, Y. Wu, Y.-P. Kuang, Q. Wang, H. Chen, S.-C. Hsu, Z. Hu, C. Li, [http://arxiv.org/abs/arXiv:1905.05421 arXiv:1905.05421]
+**)
+
+(** Change Logs **)
+(** v1.1.0: Matching the newest convention of Ref.[3] **)
+(** v1.0.0: First public version                      **)
 
 
 M$InteractionOrderHierarchy = {
@@ -113,7 +123,7 @@ M$Parameters = {
     OrderBlock    -> 7,
     Value         -> 1.0,
     TeX           -> Subscript[Q,4],
-    Description   -> "Switch in dim-4"
+    Description   -> "Switch for dim-4 operators"
   },
   AMPAA == {
     ParameterType -> External,
@@ -147,14 +157,14 @@ M$Parameters = {
   },
   gHZZ1 == {
     ParameterType    -> Internal,
-    Value            -> gw MW rhoH (cw^2 fW + sw^2 fB)/(2 cw^2 Lambda^2),
+    Value            -> gw MW (cw^2 fW + sw^2 fB)/(2 cw^2 Lambda^2),
     TeX              -> Subscript[f, HZZ1],
     InteractionOrder -> {EFF6,1},
     Description      -> "Dim 6 coupling"
   },
   gHZZ2 == {
     ParameterType    -> Internal,
-    Value            -> -gw MW rhoH (sw^4 fBB + cw^4 fWW)/(2 cw^2 Lambda^2),
+    Value            -> -gw MW (sw^4 fBB + cw^4 fWW)/(2 cw^2 Lambda^2),
     TeX              -> Subscript[f, HZZ2],
     InteractionOrder -> {EFF6,1},
     Description      -> "Dim 6 coupling"
@@ -168,35 +178,35 @@ M$Parameters = {
   },
   gHWW1 == {
     ParameterType    -> Internal,
-    Value            -> gw MW rhoH fW/(2 Lambda^2),
+    Value            -> gw MW fW/(2 Lambda^2),
     TeX              -> Subscript[f, HWW1],
     InteractionOrder -> {EFF6,1},
     Description      -> "Dim 6 coupling"
   },
   gHWW2 == {
     ParameterType    -> Internal,
-    Value            -> -gw MW rhoH fWW/(Lambda^2),
+    Value            -> -gw MW fWW/(Lambda^2),
     TeX              -> Subscript[f, HWW2],
     InteractionOrder -> {EFF6,1},
     Description      -> "Dim 6 coupling"
   },
   gHZA1 == {
     ParameterType    -> Internal,
-    Value            -> gw MW rhoH sw*(fW-fB)/(2*cw*Lambda^2),
+    Value            -> gw MW sw*(fW-fB)/(2*cw*Lambda^2),
     TeX              -> Subscript[f, HZA1],
     InteractionOrder -> {EFF6,1},
     Description      -> "Dim 6 coupling"
   },
   gHZA2 == {
     ParameterType    -> Internal,
-    Value            -> gw MW rhoH sw*(sw2*fBB-cw2*fWW)/(cw*Lambda^2),
+    Value            -> gw MW sw*(sw2*fBB-cw2*fWW)/(cw*Lambda^2),
     TeX              -> Subscript[f, HZA2],
     InteractionOrder -> {EFF6,1},
     Description      -> "Dim 6 coupling"
   },
   gHAA == {
     ParameterType    -> Internal,
-    Value            -> -gw MW rhoH sw2*(fBB + fWW)/(2*Lambda^2),
+    Value            -> -gw MW sw2*(fBB + fWW)/(2*Lambda^2),
     TeX              -> Subscript[f, HAA],
     InteractionOrder -> {EFF6,1},
     Description      -> "Dim 6 coupling"
